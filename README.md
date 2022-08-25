@@ -1,6 +1,4 @@
-# obs-altV-player-counter
-
-This HTML file can be used to display the player count of an alt:V Server.
+This HTML file can be used to display the player count of an [alt:V](https://altv.mp) Server while Streaming with the [Open Broadcaster Software](https://obsproject.com/).
 
 # Preview
 
