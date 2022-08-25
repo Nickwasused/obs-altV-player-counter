@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://api.altv.mp">
+		<title>alt:V</title>
+		<style>
+			body {
+				color: white;
+				font-size: 225%;
+				text-align: right;
+				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			}
+		</style>
+	<head>
+	<body>
+		<span id="p_count">0</span> / <span id="max_pcount">0</span>
+	</body>
+	<footer>
+		<script>
+			// config
+			const server_id = "bb7228a0d366fc575a5682a99359424f";
+			// refresh time in minuets
+			// don`t go below 1
+			const refresh_time = 3;
+
+			// end config
+
+			async function fetch_players() {
+				let request_url = "https://api.altv.mp/server/" + "" + server_id;
+				console.info("Requesting server data.");
+				let response = await fetch(request_url);
+				if (response.status !=200) {
+					console.error("Couln`t fetch api data!");
+					return 0, 0
+				} else {
+					let json = await response.json();
+					if (!json.active) {
+						console.error("The server is offline!");
+						return 0, 0
+					} else {
+						let players = json.info.players;
+						let max_players = json.info.maxPlayers;
+						set_new_stats(players, max_players);
+					}
+					
+				}
+			}
+			
+			function set_new_stats(players, maxPlayers) {
+				console.info("settings new stats");
+				let player_counter = document.getElementById("p_count");
+				let max_player_counter = document.getElementById("max_pcount");
+				
+				player_counter.innerHTML = players;
+				max_player_counter.innerHTML = maxPlayers;
+			}
+
+			// initial fetch
+			fetch_players();
+			// we don`t go below one
+			if (refresh_time < 1) {
+				window.setInterval(fetch_players, (1 * 60 * 1000));  
+			} else {
+				window.setInterval(fetch_players, (refresh_time * 60 * 1000));  
+			}
+		</script>
+	</footer>
+</html>
