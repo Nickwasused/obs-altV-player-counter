@@ -20,7 +20,7 @@
 	<footer>
 		<script>
 			// config
-			const server_id = "bb7228a0d366fc575a5682a99359424f";
+			const server_id = "EnLAA0O";
 			// refresh time in minuets
 			// don`t go below 1
 			const refresh_time = 3;
@@ -30,7 +30,7 @@
             let fetch_interval = undefined;
 
             async function fetch_players() {
-				const request_url = `https://api.alt-mp.com/server/${server_id}`;
+				const request_url = `https://api.alt-mp.com/servers/${server_id}`;
 				console.info("Requesting server data.");
 				
                 try {
@@ -40,12 +40,12 @@
                         return [0, 0]
                     } else {
                         let json = await response.json();
-                        if (!json.active) {
+                        if (!json.available) {
                             console.error("The server is offline!");
                             return [0, 0]
                         } else {
-                            let players = json.info.players;
-                            let max_players = json.info.maxPlayers;
+                            let players = json.playersCount;
+                            let max_players = json.maxPlayersCount;
                             return [players, max_players]
                         }
                     }
