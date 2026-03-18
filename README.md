@@ -1,4 +1,8 @@
+# deprecated
 
+This package is deprecated as the platform alt:V is probably going to shut down. Read more at [https://fivem.team/#passionatealtv](https://fivem.team/#passionatealtv)
+ 
+ 
 This HTML file can be used to display the player count of an [alt:V](https://altv.mp) Server while Streaming with the [Open Broadcaster Software](https://obsproject.com/).
 
 # Preview
